@@ -2,7 +2,7 @@
 
 ## Projeto de Portfólio de Testes de API com Insomnia
 
-Este repositório contém a documentação e os arquivos de configuração dos testes de API realizados para a API pública: [https://educational-api-production.up.railway.app/](https://educational-api-production.up.railway.app/).
+Este repositório contém a documentação e os arquivos de configuração dos testes de API realizados para a API pública: [https://educational-api-production.up.railway.app/api-docs/](https://educational-api-production.up.railway.app/api-docs/).
 
 O objetivo deste projeto é demonstrar minhas habilidades em testes de API, incluindo a criação de User Stories, definição de Critérios de Aceitação e execução de testes manuais utilizando o Insomnia.
 
