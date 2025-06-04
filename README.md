@@ -1,26 +1,93 @@
 # educational-api-Insomnia
 
-## Projeto de Portfólio de Testes de API com Insomnia
+### Projeto de Portfólio de Testes de API com Insomnia
+- Este repositório apresenta um projeto de portfólio focado em testes de API, demonstrando minhas habilidades em Quality Assurance (QA) através da validação de uma API pública. 
+- O projeto envolve a criação de documentação de teste (User Stories e Critérios de Aceitação) e a execução de testes manuais utilizando a ferramenta Insomnia.
 
-Este repositório contém a documentação e os arquivos de configuração dos testes de API realizados para a API pública: [https://educational-api-production.up.railway.app/api-docs/](https://educational-api-production.up.railway.app/api-docs/).
+🎯 **Objetivo do Projeto**
+- O principal objetivo deste projeto é validar o comportamento e a funcionalidade da API pública Educational API, garantindo que os endpoints de Produtos, Usuários, Categorias e Pedidos operem conforme as especificações. 
+- Além disso, visa demonstrar minhas competências em:
 
-O objetivo deste projeto é demonstrar minhas habilidades em testes de API, incluindo a criação de User Stories, definição de Critérios de Aceitação e execução de testes manuais utilizando o Insomnia.
+    - Compreensão e análise de requisitos para API.
 
-A documentação da API no formato Swagger está disponível em: [https://educational-api-production.up.railway.app/swagger.json](https://educational-api-production.up.railway.app/swagger.json)
+    - Criação de User Stories e Critérios de Aceitação claros e concisos.
 
-### Conteúdo
+    - Design de casos de teste para API (cenários de sucesso e falha).
 
-Este `README.md` contém a descrição do projeto e instruções. As User Stories, Critérios de Aceitação e evidências dos testes manuais realizados com o Insomnia para as funcionalidades de Produtos, Usuários, Categorias e Pedidos estão detalhadas abaixo. As evidências serão adicionadas conforme os testes forem concluídos.
+    - Execução de testes manuais de API utilizando uma ferramenta cliente REST (Insomnia).
 
-### Funcionalidades Testadas
+    - Análise de respostas de API (status codes, corpo JSON, headers).
 
+    - Documentação de resultados de teste e evidências.
+
+🔗 **API Testada**
+**URL Base da API e Swagger:** [Educational - API](https://educational-api-production.up.railway.app/api-docs/)
+
+**Arquivo Swagger JSON**: [JSON Educational - API](https://educational-api-production.up.railway.app/swagger.json)
+
+🛠️ **Ferramentas Utilizadas**
+- Insomnia
+
+- Swagger/OpenAPI
+
+📝 **Metodologia de Teste** 
+- A metodologia de teste aplicada neste projeto segue um fluxo claro:
+
+**Análise de Requisitos:** Compreensão das funcionalidades da API através da documentação Swagger e do entendimento do domínio de negócio.
+
+**Definição de User Stories e Critérios de Aceitação:** Para cada funcionalidade, foram elaboradas User Stories e Critérios de Aceitação detalhados, servindo como base para o design dos testes.
+
+**Design de Casos de Teste:** Com base nos Critérios de Aceitação, foram desenhados cenários de teste abrangendo casos de sucesso, falha (ex: dados inválidos, campos ausentes, IDs inexistentes).
+
+**Execução Manual com Insomnia:** Os casos de teste foram executados manualmente utilizando o Insomnia, enviando requisições HTTP e validando as respostas da API.
+
+**Documentação de Evidências:** Screenshots das requisições e respostas no Insomnia, juntamente com observações, foram coletadas como evidências de teste.
+
+✨ **Funcionalidades Testadas**
 Foram criados e executados testes manuais para as seguintes funcionalidades da API:
 
-* **Produtos**: Listagem, busca por ID, criação, atualização, exclusão e listagem por categoria.
-* **Usuários**: Cadastro, listagem, busca por ID e exclusão.
-* **Categorias**: Cadastro, listagem, busca por ID, atualização e exclusão.
-* **Pedidos**: Criação, listagem, busca por ID, atualização de status, exclusão e listagem por usuário.
+* **Produtos:**
+    - Listagem de todos os produtos (GET ```/products```).
+    - Busca de produto por ID (GET ```/products/{id}```).
+    - Criação de um novo produto (POST ```/products```).
+    - Atualização de um produto existente (PUT ```/products/{id}```).
+    - Exclusão de um produto (DELETE ```/products/{id}```).
+    - Listagem de produtos por categoria (GET ```/products/category/{categoriaId}```).
 
-### Status do Projeto
+* **Usuários:**
+    - Cadastro de um novo usuário (POST ```/users```).
+    - Listagem de todos os usuários (GET ```/users```).
+    - Busca de usuário por ID (GET ```/users/{id}```).
+    - Exclusão de um usuário (DELETE ```/users/{id}```).
 
-Em andamento - Testes manuais sendo executados e documentados.
+* **Categorias:**
+    - Cadastro de uma nova categoria (POST ```/categories```).
+    - Listagem de todas as categorias (GET ```/categories```).
+    - Busca de categoria por ID (GET ```/categories/{id}```).
+    - Atualização de uma categoria existente (PUT ```/categories/{id}```).
+    - Exclusão de uma categoria (DELETE ```/categories/{id}```).
+
+* **Pedidos:**
+    - Criação de um novo pedido (POST ```/orders```).
+    - Listagem de todos os pedidos (GET ```/orders```).
+    - Busca de pedido por ID (GET ```/orders/{id}```).
+    - Atualização de status de um pedido (PUT ```/orders/{id}```).
+    - Exclusão de um pedido (DELETE ```/orders/{id}```).
+    - Listagem de pedidos por usuário (GET ```/orders/user/{userId}```).
+
+📂 **Conteúdo do Repositório**
+- Este repositório está organizado para facilitar a visualização da documentação e dos resultados dos testes:
+
+* README.md: Este arquivo, com a descrição geral do projeto.
+
+* ```user_stories/```: Pasta contendo os arquivos de texto em PDF (```.pdf```) com as User Stories e Critérios de Aceitação para cada funcionalidade.
+
+    * Ex: ```user_stories/produtos.pdf```, ```user_stories/usuarios.pdf```, etc.
+
+* ```evidences/```: Pasta onde serão armazenadas as evidências dos testes manuais (screenshots do Insomnia).
+
+    * Organizadas por funcionalidade e cenário de teste.
+
+
+🚀 **Status do Projeto**
+* Finalizado - Todos os testes manuais foram executados e documentados. As evidências foram adicionadas e a pasta ```evidências``` está disponível no repositório dentro de cada endpoint.
