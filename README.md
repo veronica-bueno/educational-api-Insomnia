@@ -80,13 +80,13 @@ Foram criados e executados testes manuais para as seguintes funcionalidades da A
 
 * README.md: Este arquivo, com a descrição geral do projeto.
 
-* ```user_stories/```: Pasta contendo os arquivos de texto em PDF (```.pdf```) com as User Stories e Critérios de Aceitação para cada funcionalidade.
+* ```1. user_story/```: Pasta contendo os arquivos de texto em PDF (```.pdf```) com as User Stories e Critérios de Aceitação para cada funcionalidade.
 
-    * Ex: ```user_stories/produtos.pdf```, ```user_stories/usuarios.pdf```, etc.
+    * Ex: ```user_story_produtos.pdf```, ```user_story_usuarios.pdf```, etc.
 
-* ```evidences/```: Pasta onde serão armazenadas as evidências dos testes manuais (screenshots do Insomnia).
+* ```evidência/```: Pasta onde serão armazenadas as evidências dos testes manuais (screenshots do Insomnia).
 
-    * Organizadas por funcionalidade e cenário de teste.
+    * Organizadas por funcionalidade e cenário de teste. Encontra-se dentro de cada respectivo endpoint.
 
 
 🚀 **Status do Projeto**
