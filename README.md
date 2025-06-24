@@ -21,9 +21,9 @@
     - Documentação de resultados de teste e evidências.
 
 🔗 **API Testada**
-**URL Base da API e Swagger:** [Educational - API](https://educational-api-production.up.railway.app/api-docs/)
+**URL Base da API e Swagger:** [Educational - API](https://educational-api-75qy.onrender.com/api-docs/)
 
-**Arquivo Swagger JSON**: [JSON Educational - API](https://educational-api-production.up.railway.app/swagger.json)
+**Arquivo Swagger JSON**: [JSON Educational - API](https://educational-api-75qy.onrender.com/swagger.json)
 
 🛠️ **Ferramentas Utilizadas**
 - Insomnia
