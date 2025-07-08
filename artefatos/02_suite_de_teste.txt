@@ -1,0 +1,52 @@
+🧪 Suite de Testes: API de Gerenciamento de Dados
+Esta suite de testes é dedicada a validar as funcionalidades dos endpoints da sua API para Usuários, Pedidos, Produtos e Categorias, garantindo o correto funcionamento do CRUD e das operações de listagem e busca.
+
+- Cenários de Testes: Usuários
+    Cadastrar um novo usuário
+    Tentativa de cadastro de usuário sem nome
+    Tentativa de cadastro de usuario sem e-mail
+    Listar todos os usuários cadastrados
+    Tentativa de listar não tendo usuários cadastrados
+    Buscando usuário cadastrado por ID
+    Tentativa de buscar usuário não cadastrado por ID não cadastrado
+    Deletando um usuário cadastrado
+    Tentativa de deletar um usuário não cadastrado
+
+- Cenários de Testes: Categorias
+    Cadastrar uma nova categoria
+    Tentativa de cadastrar nova categoria sem nome
+    Tentativa de cadastrar nova categoria sem descrição
+    Listar todas as categorias cadastradas
+    Buscar categoria por ID
+    Tentativa de buscar categoria por ID não cadastrado
+    Atualizando uma categoria cadastrada
+    Tentativa de atualizar categoria com ID não cadastrado
+    Deletando uma categoria
+    Tentativa de deletar categoria com ID não cadastrado
+
+- Cenários de Testes: Produtos
+    Cadastrar um novo produto
+    Tentativa de cadastrar um novo produto sem nome
+    Tentativa de cadastrar um novo produto sem descrição
+    Listando todos os produtos cadastradas
+    Buscando um produto cadastrado por ID
+    Tentativa de buscar um produto por ID não cadastrado
+    Listar todos os produtos por ID de categoria
+    Atualizando um produto
+    Tentativa de atualizar um produto com ID inexistente
+    Deletando um produto por ID
+    Tentativa de deletar um produto com ID inexistente
+
+- Cenários de Testes: Pedidos 
+    Cadastrar um novo pedido
+    Tentativa de cadastrar pedido com campos ausentes
+    Tentativa de cadastrar novo pedido com ID não cadastrado
+    Listando todos os pedidos cadastrados
+    Buscar pedido cadastrado por ID
+    Tentativa de buscar pedidos por ID não cadastrado
+    Buscando todos os pedidos de um usuário por ID
+    Atualizar o status de um pedido por ID pedido
+    Tentativa de atualizar status do pedido com ID não cadastrado
+    Tentativa de atualizar status de pedido com valor inválido
+    Excluindo um pedido por ID
+    Tentativa de excluir um pedido por ID com ID não cadastrado

@@ -1,0 +1,285 @@
+Cenários de Teste: API de Usuários
+    Funcionalidade: Gerenciamento de Usuários na API
+    Como um administrador do sistema,
+    Para gerenciar os acessos dos usuários,
+    Eu quero interagir com os endpoints da API de Usuários.
+
+    Cenário: Cadastrar um novo usuário
+        Dado: Que tenho um payload JSON válido (contendo nome, email, password) para um novo usuário.
+        Quando: Eu envio uma requisição POST para o endpoint /users.
+        Então: A API deve retornar o status 201 Created.
+        E: O corpo da resposta deve conter o objeto do usuário recém-criado, incluindo um id gerado pelo sistema.
+
+    Cenário: Tentativa de cadastro de usuário sem nome
+        Dado: Que tenho um payload JSON incompleto (faltando o campo name) para um novo usuário.
+        Quando: Eu envio uma requisição POST para o endpoint /users.
+        Então: A API deve retornar o status 400 Bad Request.
+        E: O corpo da resposta deve conter uma mensagem indicando os campos ausentes.
+
+    Cenário: Tentativa de cadastro de usuário sem e-mail
+        Dado: Que tenho um payload JSON incompleto (faltando o campo email) para um novo usuário.
+        Quando: Eu envio uma requisição POST para o endpoint /users.
+        Então: A API deve retornar o status 400 Bad Request.
+        E: O corpo da resposta deve conter uma mensagem indicando os campos ausentes.
+
+    Cenário: Listar todos os usuários cadastrados
+        Dado: Que existem usuários cadastrados na API.
+        Quando: Eu envio uma requisição GET para o endpoint /users.
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter um array JSON com a lista de usuários.
+        E: Cada objeto de usuário no array deve conter os campos relevantes (como id, nome, email).
+
+    Cenário: Tentativa de listar não tendo usuários cadastrados
+        Dado: Que não existem usuários cadastrados na API.
+        Quando: Eu envio uma requisição GET para o endpoint /users.
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter um array JSON vazio ([]).
+
+    Cenário: Buscando usuário cadastrado por ID
+
+        Dado: Que existe um usuário com um ID específico na API.
+        Quando: Eu envio uma requisição GET para o endpoint /users/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter o objeto JSON com os detalhes completos do usuário solicitado.
+
+    Cenário: Tentativa de buscar usuário não cadastrado por ID não cadastrado
+        Dado: Que um ID de usuário não existe na API.
+        Quando: Eu envio uma requisição GET para o endpoint /users/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem de erro {"message": "Usuário não encontrado"}.
+
+    Cenário: Deletando um usuário cadastrado
+        Dado: Que existe um usuário com um ID específico na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /users/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter a mensagem de sucesso {"message": "Usuário excluído com sucesso"}.
+        E: Uma busca subsequente por esse ID deve retornar 404 Not Found.
+
+    Cenário: Tentativa de deletar um usuário não cadastrado
+        Dado: Que um ID de usuário não existe na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /users/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem de erro {"message": "Usuário não encontrado para exclusão."}.
+
+Cenários de Teste: API de Categorias
+    Funcionalidade: Gerenciamento de Categorias na API
+    Como um administrador,
+    Para organizar os produtos por tipo,
+    Eu quero interagir com os endpoints da API de Categorias.
+
+    Cenário: Cadastrar uma nova categoria
+        Dado: Que tenho um payload JSON válido (contendo o nome da categoria) para uma nova categoria.
+        Quando: Eu envio uma requisição POST para o endpoint /categories.
+        Então: A API deve retornar o status 201 Created.
+        E: A resposta deve conter o objeto da categoria criada, incluindo um id gerado pela API.
+
+    Cenário: Tentativa de cadastrar nova categoria sem nome
+        Dado: Que tenho um payload JSON para uma nova categoria sem o campo nome.
+        Quando: Eu envio uma requisição POST para o endpoint /categories.
+        Então: A API deve retornar o status 400 Bad Request.
+        E: O corpo da resposta deve conter a mensagem de erro: {"message": "Por favor, preencha todos os campos obrigatórios: nome e descrição."}.
+
+    Cenário: Tentativa de cadastrar nova categoria sem descrição
+        Dado: Que tenho um payload JSON para uma nova categoria sem o campo descrição.
+        Quando: Eu envio uma requisição POST para o endpoint /categories.
+        Então: A API deve retornar o status 400 Bad Request.
+        E: O corpo da resposta deve conter a mensagem de erro: {"message": "Por favor, preencha todos os campos obrigatórios: nome e descrição."}.
+
+    Cenário: Listar todas as categorias cadastradas
+        Dado: Que existem categorias cadastradas na API.
+        Quando: Eu envio uma requisição GET para o endpoint /categories.
+        Então: A API deve retornar o status 200 OK.
+        E: A resposta deve conter um array JSON com a lista de categorias.
+        E: Cada objeto de categoria no array deve conter os campos relevantes (como id e nome).
+
+    Cenário: Buscar categoria por ID
+        Dado: Que existe uma categoria com um ID específico na API.
+        Quando: Eu envio uma requisição GET para o endpoint /categories/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: A resposta deve conter um objeto JSON com os detalhes da categoria solicitada.
+
+    Cenário: Tentativa de buscar categoria por ID não cadastrado
+        Dado: Que um ID de categoria não existe na API.
+        Quando: Eu envio uma requisição GET para o endpoint /categories/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem de erro informativa: {"message": "Categoria não encontrada"}.
+
+    Cenário: Atualizando uma categoria cadastrada
+        Dado: Que existe uma categoria com um ID específico na API.
+        E: Tenho um payload JSON válido (contendo o campo nome) para atualizar o nome da categoria.
+        Quando: Eu envio uma requisição PUT para o endpoint /categories/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: A resposta deve conter o objeto da categoria com o nome atualizado.
+
+    Cenário: Tentativa de atualizar categoria com ID não cadastrado
+        Dado: Que um ID de categoria não existe na API.
+        Quando: Eu envio uma requisição PUT para o endpoint /categories/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+    
+    Cenário: Deletando uma categoria
+        Dado: Que existe uma categoria com um ID específico na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /categories/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK com uma mensagem de sucesso.
+        E: O corpo da resposta deve conter a mensagem de sucesso {"message": "Categoria removida com sucesso"}.
+
+    Cenário: Tentativa de deletar categoria com ID não cadastrado
+        Dado: Que um ID de categoria não existe na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /categories/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+
+Cenários de Teste: API de Produtos
+    Funcionalidade: Gerenciamento de Produtos na API
+    Como um cliente ou administrador,
+    Para consultar e gerenciar o catálogo de produtos,
+    Eu quero interagir com os endpoints da API de Produtos.
+
+    Cenário: Cadastrar um novo produto
+        Dado: Que tenho um payload JSON válido (contendo nome, preço, descrição, quantidade e categoria) para um novo produto.
+        Quando: Eu envio uma requisição POST para o endpoint /products.
+        Então: A API deve retornar o status 201 Created.
+        E: O corpo da resposta deve conter o objeto do produto recém-criado, incluindo o id gerado pelo sistema.
+
+    Cenário: Tentativa de cadastrar um novo produto sem nome
+        Dado: Que tenho um payload JSON para um novo produto faltando o campo nome.
+        Quando: Eu envio uma requisição POST para o endpoint /products.
+        Então: A API deve retornar o status 400 Bad Request.
+
+    Cenário: Tentativa de cadastrar um novo produto sem descrição
+        Dado: Que tenho um payload JSON para um novo produto faltando o campo descrição.
+        Quando: Eu envio uma requisição POST para o endpoint /products.
+        Então: A API deve retornar o status 400 Bad Request.
+
+    Cenário: Listando todos os produtos cadastradas
+        Dado: Que existem produtos cadastrados na API.
+        Quando: Eu envio uma requisição GET para o endpoint /products.
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter um array JSON com a lista de produtos.
+        E: Cada objeto de produto no array deve conter os campos: id (inteiro), nome (string), preco (número), descrição (string), quantidade (inteiro) e categoria (string ou objeto).
+
+    Cenário: Buscando um produto cadastrado por ID
+        Dado: Que existe um produto com um ID específico na API.
+        Quando: Eu envio uma requisição GET para o endpoint /products/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter um objeto JSON com os detalhes completos do produto solicitado.
+
+    Cenário: Tentativa de buscar um produto por ID não cadastrado
+        Dado: Que um ID de produto não existe na API.
+        Quando: Eu envio uma requisição GET para o endpoint /products/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem de erro {"message": "Produto não encontrado"}.
+
+    Cenário: Listar todos os produtos por ID de categoria
+        Dado: Que existe uma categoria com um ID específico que possui produtos associados.
+        Quando: Eu envio uma requisição GET para o endpoint /products/categories/{categoriaId} (com o ID da categoria).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter uma lista de produtos pertencentes a essa categoria.
+        Se a categoria existir mas não tiver produtos, a API deve retornar 200 OK e um array vazio ([]).
+        Se a categoria não existir, a API deve retornar 404 Not Found com a mensagem {"message": "Categoria não encontrada"}.
+
+    Cenário: Atualizando um produto
+        Dado: Que existe um produto com um ID específico na API.
+        E: Tenho um payload JSON válido com informações para atualização (nome, preço, descrição, quantidade e categoria).
+        Quando: Eu envio uma requisição PUT para o endpoint /products/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter o objeto do produto com as informações atualizadas.
+
+    Cenário: Tentativa de atualizar um produto com ID inexistente
+        Dado: Que um ID de produto não existe na API.
+        Quando: Eu envio uma requisição PUT para o endpoint /products/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+    
+    Cenário: Deletando um produto por ID
+        Dado: Que existe um produto com um ID específico na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /products/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter a mensagem de confirmação {"message": "produto removido com sucesso"}.
+
+    Cenário: Tentativa de deletar um produto com ID inexistente
+        Dado: Que um ID de produto não existe na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /products/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem de erro {"message": "produto não encontrado para exclusão"}.
+
+Cenários de Teste: API de Pedidos
+    Funcionalidade: Gerenciamento de Pedidos na API
+    Como um cliente ou administrador,
+    Para gerenciar e acompanhar as compras,
+    Eu quero interagir com os endpoints da API de Pedidos.
+
+    Cenário: Cadastrar um novo pedido
+        Dado: Que tenho um payload JSON válido (contendo os dados necessários para o pedido, com IDs de usuário e produto existentes).
+        Quando: Eu envio uma requisição POST para o endpoint /orders.
+        Então: A API deve retornar o status 201 Created.
+        E: A resposta deve conter o objeto do pedido criado, incluindo um id gerado pela API e outros detalhes relevantes do pedido.
+
+    Cenário: Tentativa de cadastrar pedido com campos ausentes
+        Dado: Que tenho um payload JSON incompleto (faltando informações obrigatórias) para um novo pedido.
+        Quando: Eu envio uma requisição POST para o endpoint /orders.
+        Então: A API deve retornar o status 400 Bad Request.
+        E: O corpo da resposta deve conter uma mensagem indicando os campos ausentes.
+
+    Cenário: Tentativa de cadastrar novo pedido com ID não cadastrado
+        Dado: Que tenho um payload JSON para um novo pedido com um ID de produto ou usuário inexistente.
+        Quando: Eu envio uma requisição POST para o endpoint /orders.
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem: {"message": "Produto com ID {id} não encontrado. Por favor, forneça um ID de produto válido e existente."} (ou mensagem similar para usuário).
+
+    Cenário: Listando todos os pedidos cadastrados
+        Dado: Que existem pedidos cadastrados na API.
+        Quando: Eu envio uma requisição GET para o endpoint /orders.
+        Então: A API deve retornar o status 200 OK.
+        E: A resposta deve conter um array JSON com a lista de todos os pedidos.
+        E: Cada objeto de pedido no array deve conter informações relevantes (como id, usuarioId, itens, status, data_criacao, etc.).
+
+    Cenário: Buscar pedido cadastrado por ID
+        Dado: Que existe um pedido com um ID específico na API.
+        Quando: Eu envio uma requisição GET para o endpoint /orders/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: A resposta deve conter um objeto JSON com os detalhes do pedido solicitado.
+
+    Cenário: Tentativa de buscar pedidos por ID não cadastrado
+        Dado: Que um ID de pedido não existe na API.
+        Quando: Eu envio uma requisição GET para o endpoint /orders/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter uma mensagem de erro informativa: {"message": "Pedido não encontrado"}.
+
+    Cenário: Buscando todos os pedidos de um usuário por ID
+        Dado: Que existe um usuário com um ID específico que possui pedidos.
+        Quando: Eu envio uma requisição GET para o endpoint /orders/users/{usuarioId} (com o ID do usuário).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter uma lista dos pedidos daquele usuário.
+        Se o usuarioId existir, mas não houver pedidos associados, a API deve retornar 200 OK e uma lista vazia ([]) com a mensagem {"message": "Nenhum pedido encontrado para este usuário."}.
+        Se o usuarioId fornecido for inválido ou inexistente, a API deve retornar 404 Not Found com a mensagem {"message": "Usuário não encontrado."}.
+
+    Cenário: Atualizar o status de um pedido por ID pedido
+        Dado: Que existe um pedido com um ID específico na API.
+        E: Tenho um payload JSON com um novo status válido para esse pedido.
+        Quando: Eu envio uma requisição PUT para o endpoint /orders/{id}/status (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: A resposta deve conter o objeto do pedido com o status atualizado.
+
+    Cenário: Tentativa de atualizar status do pedido com ID não cadastrado
+        Dado: Que um ID de pedido não existe na API.
+        E: Tenho um payload JSON com um novo status para esse pedido.
+        Quando: Eu envio uma requisição PUT para o endpoint /orders/{id}/status (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem: {"message": "Pedido não encontrado para atualização de status."}.
+
+    Cenário: Tentativa de atualizar status de pedido com valor inválido
+        Dado: Que existe um pedido com um ID específico na API.
+        E: Tenho um payload JSON com um status inválido para esse pedido.
+        Quando: Eu envio uma requisição PUT para o endpoint /orders/{id}/status (com o ID existente).
+        Então: A API deve retornar o status 400 Bad Request.
+        E: O corpo da resposta deve conter a mensagem: {"message": "Status inválido. Use um dos seguintes: Pendente, Processado, Enviado, Entregue, Cancelado."}.
+
+    Cenário: Excluindo um pedido por ID
+        Dado: Que existe um pedido com um ID específico na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /orders/{id} (com o ID existente).
+        Então: A API deve retornar o status 200 OK.
+        E: O corpo da resposta deve conter a mensagem de sucesso {"message": "Pedido removido com sucesso"}.
+
+    Cenário: Tentativa de excluir um pedido por ID com ID não cadastrado
+        Dado: Que um ID de pedido não existe na API.
+        Quando: Eu envio uma requisição DELETE para o endpoint /orders/{id} (com o ID inexistente).
+        Então: A API deve retornar o status 404 Not Found.
+        E: O corpo da resposta deve conter a mensagem informativa: {"message": "Pedido não encontrado para exclusão."}.
