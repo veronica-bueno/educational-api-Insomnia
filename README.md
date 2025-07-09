@@ -47,7 +47,7 @@
 Foram criados e executados testes manuais para as seguintes funcionalidades da API:
 
 * **Usuários:**
-    CT001 :: POST - Cadastrar um novo usuário (```/users```)
+    - CT001 :: POST - Cadastrar um novo usuário (```/users```)
     CT002 :: POST - Tentativa de cadastro de usuário sem nome (```/users```)
     CT003 :: POST - Tentativa de cadastro de usuário e-mail (```/users```)
     CT004 :: GET - Listar todos os usuários cadastrados (```/users```)
